@@ -30,6 +30,7 @@
 *.exe
 *.out
 *.app
+variable_trigger
 
 # vscode
 *.code-workspace
