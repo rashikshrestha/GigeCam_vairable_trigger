@@ -369,8 +369,8 @@ int main(int argc, char* argv[])
 
 			// UINT8 width=0;
 			// int type;
-			GevGetFeatureValue(handle, "Width", &type, sizeof(UINT32), &width);
-			std::cout << "My aWidth = " << width << std::endl;
+			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &width);
+			std::cout << "My Width = " << width << std::endl;
 			
 			
 			// Go on to adjust some API related settings (for tuning / diagnostics / etc....).
