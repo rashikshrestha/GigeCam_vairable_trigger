@@ -146,7 +146,7 @@ void * ImageDisplayThread( void *context)
 			// Wait for images to be received
 			status = GevWaitForNextImage(displayContext->camHandle, &img, 1000);
 
-			UINT8 width;
+			UINT8 width=0;
 			int type;
 			GevGetFeatureValue(displayContext->camHandle, "Width", &type, sizeof(UINT32), &width);
 			std::cout << "Width = " << width << std::endl;
