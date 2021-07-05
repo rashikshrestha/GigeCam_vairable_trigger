@@ -369,6 +369,9 @@ int main(int argc, char* argv[])
 
 			// --------------------------------------------------------------------------------
 			UINT8 timestampModulo=0;
+
+			GevGetFeatureValue(handle, "Width", &type, sizeof(UINT32), &width);
+			std::cout << "width = " << width << std::endl;
 			
 			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
 			std::cout << "timestampModulo old = " << timestampModulo << std::endl;
