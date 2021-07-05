@@ -1,6 +1,5 @@
 
 #include <stdio.h>
-#include <iostream>
 #include "cordef.h"
 #include "GenApi/GenApi.h"		//!< GenApi lib definitions.
 #include "gevapi.h"				//!< GEV lib definitions.
@@ -147,10 +146,6 @@ void * ImageDisplayThread( void *context)
 			// Wait for images to be received
 			status = GevWaitForNextImage(displayContext->camHandle, &img, 1000);
 
-			UINT8 width=0;
-			int type;
-			GevGetFeatureValue(displayContext->camHandle, "Width", &type, sizeof(UINT32), &width);
-			std::cout << "Width = " << width << std::endl;
 
 			// printf ("%d is the width of the image\n", width);
 
@@ -371,6 +366,11 @@ int main(int argc, char* argv[])
 			macLow = pCamera[camIndex].macLow;
 			macLow &= 0x00FFFFFF;
 			snprintf(uniqueName, sizeof(uniqueName), "img_%06x", macLow); 
+
+			// UINT8 width=0;
+			// int type;
+			GevGetFeatureValue(handle, "Width", &type, sizeof(UINT32), &width);
+			// std::cout << "Width = " << width << std::endl;
 			
 			
 			// Go on to adjust some API related settings (for tuning / diagnostics / etc....).
@@ -415,7 +415,7 @@ int main(int argc, char* argv[])
 					{
 						//Mandatory features....
 						GenApi::CIntegerPtr ptrIntNode = Camera->_GetNode("Width");
-						width = (UINT32) ptrIntNode->GetValue();
+						// width = (UINT32) ptrIntNode->GetValue();
 						ptrIntNode = Camera->_GetNode("Height");
 						height = (UINT32) ptrIntNode->GetValue();
 						ptrIntNode = Camera->_GetNode("PayloadSize");
