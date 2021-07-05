@@ -367,16 +367,16 @@ int main(int argc, char* argv[])
 			macLow &= 0x00FFFFFF;
 			snprintf(uniqueName, sizeof(uniqueName), "img_%06x", macLow); 
 
-			// UINT8 width=0;
+			UINT8 timestampModulo=0;
 			// int type;
 			// 1000000000
-			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &width);
-			std::cout << "timestampModulo old = " << width << std::endl;
+			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
+			std::cout << "timestampModulo old = " << timestampModulo << std::endl;
 
 			width = 3000000000;
-			GevSetFeatureValue(handle, "timestampModulo", sizeof(UINT32), &width);
-			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &width);
-			std::cout << "timestampModulo new = " << width << std::endl;
+			GevSetFeatureValue(handle, "timestampModulo", sizeof(UINT32), &timestampModulo);
+			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
+			std::cout << "timestampModulo new = " << timestampModulo << std::endl;
 			
 			
 			// Go on to adjust some API related settings (for tuning / diagnostics / etc....).
@@ -421,7 +421,7 @@ int main(int argc, char* argv[])
 					{
 						//Mandatory features....
 						GenApi::CIntegerPtr ptrIntNode = Camera->_GetNode("Width");
-						// width = (UINT32) ptrIntNode->GetValue();
+						width = (UINT32) ptrIntNode->GetValue();
 						ptrIntNode = Camera->_GetNode("Height");
 						height = (UINT32) ptrIntNode->GetValue();
 						ptrIntNode = Camera->_GetNode("PayloadSize");
