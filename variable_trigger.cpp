@@ -147,7 +147,7 @@ void * ImageDisplayThread( void *context)
 			status = GevWaitForNextImage(displayContext->camHandle, &img, 1000);
 
 
-			// printf ("%d is the width of the image\n", width);
+			printf ("Got Next Image\n");
 
 
 			if ((img != NULL) && (status == GEVLIB_OK))
