@@ -367,16 +367,18 @@ int main(int argc, char* argv[])
 			macLow &= 0x00FFFFFF;
 			snprintf(uniqueName, sizeof(uniqueName), "img_%06x", macLow); 
 
-			UINT8 timestampModulo=0;
-			// int type;
-			// 1000000000
-			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
-			std::cout << "timestampModulo old = " << timestampModulo << std::endl;
+			// --------------------------------------------------------------------------------
+			// UINT8 timestampModulo=0;
+			
+			// GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
+			// std::cout << "timestampModulo old = " << timestampModulo << std::endl;
 
-			width = 3000000000;
-			GevSetFeatureValue(handle, "timestampModulo", sizeof(UINT32), &timestampModulo);
-			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
-			std::cout << "timestampModulo new = " << timestampModulo << std::endl;
+			// width = 3000000000;
+			// GevSetFeatureValue(handle, "timestampModulo", sizeof(UINT32), &timestampModulo);
+			// GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
+			// std::cout << "timestampModulo new = " << timestampModulo << std::endl;
+
+			// ---------------------------------------------------------------------------------
 			
 			
 			// Go on to adjust some API related settings (for tuning / diagnostics / etc....).
