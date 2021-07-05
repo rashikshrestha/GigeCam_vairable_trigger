@@ -329,6 +329,7 @@ int main(int argc, char* argv[])
 			int type;
 			UINT32 height = 0;
 			UINT32 width = 0;
+			UINT32 timestampModulo=0;
 			UINT32 format = 0;
 			UINT32 maxHeight = 1600;
 			UINT32 maxWidth = 2048;
@@ -368,7 +369,7 @@ int main(int argc, char* argv[])
 			snprintf(uniqueName, sizeof(uniqueName), "img_%06x", macLow); 
 
 			// --------------------------------------------------------------------------------
-			UINT8 timestampModulo=0;
+			
 
 			GevGetFeatureValue(handle, "Width", &type, sizeof(UINT32), &width);
 			std::cout << "width = " << width << std::endl;
