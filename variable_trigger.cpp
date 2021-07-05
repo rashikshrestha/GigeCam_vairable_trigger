@@ -144,7 +144,7 @@ void * ImageDisplayThread( void *context)
 			GEV_STATUS status = 0;
 	
 			// Wait for images to be received
-			status = GevWaitForNextImage(displayContext->camHandle, &img, 1000);
+			status = GevWaitForNextImage(displayContext->camHandle, &img, 5000);
 
 
 			printf ("Got Next Image\n");
