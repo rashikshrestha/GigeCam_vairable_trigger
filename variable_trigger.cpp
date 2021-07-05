@@ -147,6 +147,14 @@ void *ImageDisplayThread(void *context)
 
 			printf("Got Next Image\n");
 
+			int type;
+			UINT32 timestampModulo = 0;
+
+			timestampModulo = 1500000000;
+			GevSetFeatureValue(displayContext->camHandle, "timestampModulo", sizeof(UINT32), &timestampModulo);
+			GevGetFeatureValue(displayContext->camHandle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
+			std::cout << "timestampModulo = " << timestampModulo << std::endl;
+
 			if ((img != NULL) && (status == GEVLIB_OK))
 			{
 				if (img->status == 0)
