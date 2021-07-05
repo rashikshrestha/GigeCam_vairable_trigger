@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <iostream>
 #include "cordef.h"
 #include "GenApi/GenApi.h"		//!< GenApi lib definitions.
 #include "gevapi.h"				//!< GEV lib definitions.
@@ -149,9 +150,9 @@ void * ImageDisplayThread( void *context)
 			UINT8 width=0;
 			int type;
 			GevGetFeatureValue(displayContext->camHandle, "Width", &type, sizeof(UINT32), &width);
-			// std::cout << "Width = " << width << std::endl;
+			std::cout << "Width = " << width << std::endl;
 
-			printf ("%d is the width of the image\n", width);
+			// printf ("%d is the width of the image\n", width);
 
 
 			if ((img != NULL) && (status == GEVLIB_OK))
