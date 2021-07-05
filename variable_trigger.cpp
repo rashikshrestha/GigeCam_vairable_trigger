@@ -305,6 +305,11 @@ int main(int argc, char* argv[])
 	status = GevGetCameraList( pCamera, MAX_CAMERAS, &numCamera);
 
 	printf ("%d camera(s) on the network\n", numCamera);
+	for(int i=0;i<numCamera;i++)
+	{
+		std::cout << i << " : " << pCamera[i].macLow << std::endl;
+	}
+	std::cout << std::endl;
 
 	// Select the first camera found (unless the command line has a parameter = the camera index)
 	if (numCamera != 0)
