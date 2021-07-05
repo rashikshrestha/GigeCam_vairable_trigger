@@ -1,5 +1,5 @@
 
-#include "stdio.h"
+#include <stdio.h>
 #include "cordef.h"
 #include "GenApi/GenApi.h"		//!< GenApi lib definitions.
 #include "gevapi.h"				//!< GEV lib definitions.
@@ -145,6 +145,12 @@ void * ImageDisplayThread( void *context)
 	
 			// Wait for images to be received
 			status = GevWaitForNextImage(displayContext->camHandle, &img, 1000);
+
+			UINT8 width;
+			int type;
+			GevGetFeatureValue(displayContext->camHandle, "Width", &type, sizeof(UINT32), &width);
+			std::cout << "Width = " << width << std::endl;
+
 
 			if ((img != NULL) && (status == GEVLIB_OK))
 			{
@@ -530,7 +536,6 @@ int main(int argc, char* argv[])
 								printf("*** TurboDrive is NOT Available for this device/pixel format combination ***\n");
 							}
 		            }
-
 		            // Stop
 		            if ((c == 'S') || (c=='s') || (c == '0'))
 		            {
@@ -646,6 +651,7 @@ int main(int argc, char* argv[])
 							}
 						
 		            }
+
 		            if (c == '?')
 		            {
 		               PrintMenu();
