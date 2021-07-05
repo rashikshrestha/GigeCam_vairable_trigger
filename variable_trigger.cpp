@@ -136,6 +136,9 @@ void *ImageDisplayThread(void *context)
 		//unsigned long deltatime = 0;
 		prev_time = us_timer_init();
 
+		UINT32 timestampModulo = 1000000000;
+		UINT32 rectimestampModulo = 0;
+
 		// While we are still running.
 		while (!displayContext->exit)
 		{
@@ -148,13 +151,14 @@ void *ImageDisplayThread(void *context)
 			printf("Got Next Image\n");
 
 			int type;
-			UINT32 timestampModulo = 0;
-			UINT32 rectimestampModulo = 0;
+			
+			
 
-			timestampModulo = 1000000000;
+			
+			std::cout << "set timestampModulo = " << timestampModulo << std::endl;
 			GevSetFeatureValue(displayContext->camHandle, "timestampModulo", sizeof(UINT32), &timestampModulo);
 			GevGetFeatureValue(displayContext->camHandle, "timestampModulo", &type, sizeof(UINT32), &rectimestampModulo);
-			std::cout << "timestampModulo = " << rectimestampModulo << std::endl;
+			std::cout << "get timestampModulo = " << rectimestampModulo << std::endl;
 
 			timestampModulo += 100000000;
 
