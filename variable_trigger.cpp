@@ -368,15 +368,15 @@ int main(int argc, char* argv[])
 			snprintf(uniqueName, sizeof(uniqueName), "img_%06x", macLow); 
 
 			// --------------------------------------------------------------------------------
-			// UINT8 timestampModulo=0;
+			UINT8 timestampModulo=0;
 			
-			// GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
-			// std::cout << "timestampModulo old = " << timestampModulo << std::endl;
+			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
+			std::cout << "timestampModulo old = " << timestampModulo << std::endl;
 
-			// width = 3000000000;
-			// GevSetFeatureValue(handle, "timestampModulo", sizeof(UINT32), &timestampModulo);
-			// GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
-			// std::cout << "timestampModulo new = " << timestampModulo << std::endl;
+			width = 3000000000;
+			GevSetFeatureValue(handle, "timestampModulo", sizeof(UINT32), &timestampModulo);
+			GevGetFeatureValue(handle, "timestampModulo", &type, sizeof(UINT32), &timestampModulo);
+			std::cout << "timestampModulo new = " << timestampModulo << std::endl;
 
 			// ---------------------------------------------------------------------------------
 			
