@@ -152,9 +152,6 @@ void *ImageDisplayThread(void *context)
 
 			int type;
 			
-			
-
-			
 			std::cout << "set timestampModulo = " << timestampModulo << std::endl;
 			GevSetFeatureValue(displayContext->camHandle, "timestampModulo", sizeof(UINT32), &timestampModulo);
 			GevGetFeatureValue(displayContext->camHandle, "timestampModulo", &type, sizeof(UINT32), &rectimestampModulo);
@@ -250,6 +247,7 @@ int IsTurboDriveAvailable(GEV_CAMERA_HANDLE handle)
 
 int main(int argc, char *argv[])
 {
+
 	GEV_DEVICE_INTERFACE pCamera[MAX_CAMERAS] = {0};
 	GEV_STATUS status;
 	int numCamera = 0;
@@ -262,6 +260,23 @@ int main(int argc, char *argv[])
 	int turboDriveAvailable = 0;
 	char uniqueName[128];
 	uint32_t macLow = 0; // Low 32-bits of the mac address (for file naming).
+
+	// ---------------------------------------------------------------------------
+    GEVLIB_CONFIG_OPTIONS config;
+
+    status = GevGetLibraryConfigOptions(&config);
+    if(status)
+        std::cout << "Error getting config with status " << status << std::endl;
+
+    std::cout << "LOG level = " << config.logLevel << std::endl;
+
+    config.logLevel = GEV_LOG_LEVEL_TRACE;
+
+    status = GevSetLibraryConfigOptions(&config);
+    if(status)
+        std::cout << "Error setting config with status " << status << std::endl;
+
+    // ---------------------------------------------------------------------------
 
 	// Boost application RT response (not too high since GEV library boosts data receive thread to max allowed)
 	// SCHED_FIFO can cause many unintentional side effects.
