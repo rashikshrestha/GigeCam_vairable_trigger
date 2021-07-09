@@ -127,6 +127,24 @@ void PrintMenu()
 
 void *ImageDisplayThread(void *context)
 {
+	GEV_STATUS status;
+		// ---------------------------------------------------------------------------
+    GEVLIB_CONFIG_OPTIONS config;
+
+    status = GevGetLibraryConfigOptions(&config);
+    if(status)
+        std::cout << "Error getting config with status " << status << std::endl;
+
+    std::cout << "LOG level = " << config.logLevel << std::endl;
+
+    config.logLevel = GEV_LOG_LEVEL_TRACE;
+
+    status = GevSetLibraryConfigOptions(&config);
+    if(status)
+        std::cout << "Error setting config with status " << status << std::endl;
+
+    // ---------------------------------------------------------------------------
+
 	MY_CONTEXT *displayContext = (MY_CONTEXT *)context;
 
 	if (displayContext != NULL)
@@ -148,16 +166,16 @@ void *ImageDisplayThread(void *context)
 			// Wait for images to be received
 			status = GevWaitForNextImage(displayContext->camHandle, &img, 5000);
 
-			printf("Got Next Image\n");
+			// printf("Got Next Image\n");
 
-			int type;
+			// int type;
 			
-			std::cout << "set timestampModulo = " << timestampModulo << std::endl;
-			GevSetFeatureValue(displayContext->camHandle, "timestampModulo", sizeof(UINT32), &timestampModulo);
-			GevGetFeatureValue(displayContext->camHandle, "timestampModulo", &type, sizeof(UINT32), &rectimestampModulo);
-			std::cout << "get timestampModulo = " << rectimestampModulo << std::endl;
+			// std::cout << "set timestampModulo = " << timestampModulo << std::endl;
+			// GevSetFeatureValue(displayContext->camHandle, "timestampModulo", sizeof(UINT32), &timestampModulo);
+			// GevGetFeatureValue(displayContext->camHandle, "timestampModulo", &type, sizeof(UINT32), &rectimestampModulo);
+			// std::cout << "get timestampModulo = " << rectimestampModulo << std::endl;
 
-			timestampModulo += 100000000;
+			// timestampModulo += 100000000;
 
 			if ((img != NULL) && (status == GEVLIB_OK))
 			{
